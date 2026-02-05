@@ -1,0 +1,7 @@
+.vs code/
+face3d_env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
