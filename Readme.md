@@ -34,7 +34,7 @@ The system successfully detects faces and displays their 3D position in real-tim
 
 The graph below shows the tracked position data over multiple frames:
 
-![Position Graph](Results/result-face-position-graph_png.PNG)
+![Position Graph](Results/result-face-position-graph.png)
 
 **Graph Analysis:**
 - **Green line (z)**: Distance from camera (depth) - ranges from ~200mm to ~800mm
@@ -69,7 +69,7 @@ pip install numpy
 1. **Clone the repository:**
 ```bash
 git clone https://github.com/syedrafayme143/Face-3D-position-estimation.git
-cd 3d-face-tracking
+cd Face-3D-position-estimation
 ```
 
 2. **Install dependencies:**
