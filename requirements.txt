@@ -1,3 +1,6 @@
 dearpygui
 opencv-python
 numpy
+matplotlib
+mediapipe
+scipy
