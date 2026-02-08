@@ -1,6 +1,7 @@
 # ===============================
 # Virtual environments
 # ===============================
+yolo_env
 face3d_env/
 venv/
 env/
