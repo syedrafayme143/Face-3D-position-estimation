@@ -1,6 +1,7 @@
 dearpygui
 opencv-python
-numpy
+numpy==1.26.4
 matplotlib
-mediapipe
+mediapipe==0.10.20
 scipy
+ultralytics
