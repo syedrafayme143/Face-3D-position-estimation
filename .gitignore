@@ -31,3 +31,4 @@ Thumbs.db
 # ===============================
 *.log
 *.csv
+Results/haar_tracking_demo.gif
