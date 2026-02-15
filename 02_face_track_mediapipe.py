@@ -1,6 +1,7 @@
 """
 3D Face Tracking System using MediaPipe with Kalman Filter
 Real-time face detection and position estimation using MediaPipe Face Detection
+WITH PERFORMANCE MONITORING
 """
 
 import dearpygui.dearpygui as dpg
@@ -13,6 +14,7 @@ import mediapipe as mp
 
 from Utils.lin_kalman import LinKalman
 from Utils.Dataplot import DataPlot
+from Utils.performance_monitor import PerformanceMonitor  # ADDED
 
 # Constants
 CALIBRATION_FILE = 'Data/calibration_data.pkl'
@@ -60,6 +62,9 @@ class FaceGuiMediaPipe:
         self.video_writer = None
         self.output_dir = "Results"
         os.makedirs(self.output_dir, exist_ok=True) # Create Results folder if it doesn't exist
+        
+        # ADDED: Initialize performance monitor
+        self.performance_monitor = PerformanceMonitor(method_name="MediaPipe")
 
     def _load_calibration(self):
         """Load camera calibration data and initialize undistortion maps."""
@@ -216,8 +221,8 @@ class FaceGuiMediaPipe:
         # Measurement noise covariance
         R = np.array([
             [5.0, 0.0, 0.0],       # MediaPipe is more accurate
-            [5.0, 0.0, 0.0],
-            [30.0, 0.0, 0.0]       # z still has more noise
+            [0.0, 5.0, 0.0],
+            [0.0, 0.0, 30.0]       # z still has more noise
         ])
         
         # Process noise covariance
@@ -279,6 +284,9 @@ class FaceGuiMediaPipe:
 
         try:
             while dpg.is_dearpygui_running():
+                # ADDED: Start frame timing
+                self.performance_monitor.start_frame()
+                
                 # Read frame from camera
                 ret, frame = self.video_capture.read()
                 if not ret:
@@ -294,8 +302,14 @@ class FaceGuiMediaPipe:
                 # Convert BGR to RGB for MediaPipe
                 rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 
+                # ADDED: Start detection timing
+                self.performance_monitor.start_detection()
+                
                 # Detect faces with MediaPipe
                 results = self.face_detection.process(rgb_frame)
+                
+                # ADDED: End detection timing
+                self.performance_monitor.end_detection()
                 
                 # Process detected faces
                 if results.detections:
@@ -347,7 +361,17 @@ class FaceGuiMediaPipe:
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2
                     )
                     
+                    # ADDED: Record metrics for detected frame
+                    self.performance_monitor.end_frame(
+                        face_detected=True,
+                        position=(xmm, ymm, zmm),
+                        filtered_position=(x_k, y_k, z_k)
+                    )
+                    
                     frameno += 1
+                else:
+                    # ADDED: Record metrics for frame with no detection
+                    self.performance_monitor.end_frame(face_detected=False)
                 
                 # Add legend to video
                 cv2.putText(frame, "MediaPipe Method", (10, 30),
@@ -372,7 +396,17 @@ class FaceGuiMediaPipe:
                 # Render GUI
                 dpg.render_dearpygui_frame()
                 
+                # ADDED: Print stats every 100 frames
+                if frameno % 100 == 0 and frameno > 0:
+                    stats = self.performance_monitor.get_realtime_stats()
+                    print(f"[Frame {frameno}] FPS: {stats.get('avg_fps', 0):.1f}, "
+                          f"Detection: {stats.get('detection_rate', 0):.1f}%")
+                
         finally:
+            # ADDED: Save benchmark results
+            self.performance_monitor.save_results()
+            self.performance_monitor.print_summary()
+            
             # Cleanup
             print("Cleaning up resources...")
             if self.video_writer is not None:
