@@ -1,6 +1,7 @@
 """
 3D Face Tracking System using YOLOv8-Face Only with Kalman Filter
 Real-time face detection and position estimation using YOLOv8-Face model
+WITH PERFORMANCE MONITORING
 
 IMPORTANT: Download the model file manually before running:
 1. Go to: https://huggingface.co/Bingsu/adetailer/resolve/main/face_yolov8n.pt
@@ -18,6 +19,7 @@ from ultralytics import YOLO
 
 from Utils.lin_kalman import LinKalman
 from Utils.Dataplot import DataPlot
+from Utils.performance_monitor import PerformanceMonitor  # ADDED
 
 # Constants
 CALIBRATION_FILE = 'Data/calibration_data.pkl'
@@ -66,6 +68,9 @@ class FaceGuiYOLO:
         self.video_writer = None
         self.output_dir = "Results"
         os.makedirs(self.output_dir, exist_ok=True) # Create Results folder if it doesn't exist
+        
+        # ADDED: Initialize performance monitor
+        self.performance_monitor = PerformanceMonitor(method_name="YOLOv8")
 
     def _load_yolo_face_model(self):
         """Load YOLOv8-Face model."""
@@ -408,6 +413,9 @@ class FaceGuiYOLO:
 
         try:
             while dpg.is_dearpygui_running():
+                # ADDED: Start frame timing
+                self.performance_monitor.start_frame()
+                
                 # Read frame from camera
                 ret, frame = self.video_capture.read()
                 if not ret:
@@ -420,8 +428,14 @@ class FaceGuiYOLO:
                 # Undistort frame using pre-computed maps
                 frame = cv2.remap(frame, self.mapx, self.mapy, cv2.INTER_LINEAR)
 
+                # ADDED: Start detection timing
+                self.performance_monitor.start_detection()
+                
                 # Detect faces using YOLOv8-Face
                 faces = self.detect_faces_yolo(frame)
+                
+                # ADDED: End detection timing
+                self.performance_monitor.end_detection()
                 
                 # Find best valid face detection
                 current_detection = None
@@ -503,7 +517,17 @@ class FaceGuiYOLO:
                             cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 165, 0), 1
                         )
                     
+                    # ADDED: Record metrics for detected frame
+                    self.performance_monitor.end_frame(
+                        face_detected=True,
+                        position=(xmm, ymm, zmm),
+                        filtered_position=(x_k, y_k, z_k)
+                    )
+                    
                     frameno += 1
+                else:
+                    # ADDED: Record metrics for frame with no detection
+                    self.performance_monitor.end_frame(face_detected=False)
                 
                 # Add legend to video
                 cv2.putText(frame, "YOLOv8-Face Detection Method", (10, 30),
@@ -528,7 +552,17 @@ class FaceGuiYOLO:
                 # Render GUI
                 dpg.render_dearpygui_frame()
                 
+                # ADDED: Print stats every 100 frames
+                if frameno % 100 == 0 and frameno > 0:
+                    stats = self.performance_monitor.get_realtime_stats()
+                    print(f"[Frame {frameno}] FPS: {stats.get('avg_fps', 0):.1f}, "
+                          f"Detection: {stats.get('detection_rate', 0):.1f}%")
+                
         finally:
+            # ADDED: Save benchmark results
+            self.performance_monitor.save_results()
+            self.performance_monitor.print_summary()
+            
             # Cleanup
             print("Cleaning up resources...")
             if self.video_writer is not None:
