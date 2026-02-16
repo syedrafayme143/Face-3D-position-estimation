@@ -13,7 +13,7 @@ import math
 
 from Utils.lin_kalman import LinKalman
 from Utils.Dataplot import DataPlot
-from Utils.performance_monitor import PerformanceMonitor  # ADDED
+from Utils.performance_monitor import PerformanceMonitor 
 
 # Constants
 CALIBRATION_FILE = 'Data/calibration_data.pkl'
@@ -325,7 +325,7 @@ class FaceGui:
                 # Convert to grayscale and detect faces
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 
-                # ADDED: Start detection timing
+                # Start detection timing
                 self.performance_monitor.start_detection()
                 
                 faces = self.faceCascade.detectMultiScale(
@@ -336,7 +336,7 @@ class FaceGui:
                     flags=cv2.CASCADE_SCALE_IMAGE
                 )
                 
-                # ADDED: End detection timing
+                # End detection timing
                 self.performance_monitor.end_detection()
                 
                 # Process largest detected face
@@ -374,7 +374,7 @@ class FaceGui:
                             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2
                         )
                         
-                        # ADDED: Record metrics for detected frame
+                        # Record metrics for detected frame
                         self.performance_monitor.end_frame(
                             face_detected=True,
                             position=(xmm, ymm, zmm),
@@ -383,7 +383,7 @@ class FaceGui:
                         
                         frameno += 1
                 else:
-                    # ADDED: Record metrics for frame with no detection
+                    #Record metrics for frame with no detection
                     self.performance_monitor.end_frame(face_detected=False)
                 
                 # Add legend to video
@@ -412,14 +412,14 @@ class FaceGui:
                 # Render GUI
                 dpg.render_dearpygui_frame()
                 
-                # ADDED: Print stats every 100 frames
+                #Print stats every 100 frames
                 if frameno % 100 == 0 and frameno > 0:
                     stats = self.performance_monitor.get_realtime_stats()
                     print(f"[Frame {frameno}] FPS: {stats.get('avg_fps', 0):.1f}, "
                           f"Detection: {stats.get('detection_rate', 0):.1f}%")
                 
         finally:
-            # ADDED: Save benchmark results
+            #Save benchmark results
             self.performance_monitor.save_results()
             self.performance_monitor.print_summary()
             
