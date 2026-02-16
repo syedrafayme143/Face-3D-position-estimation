@@ -1,0 +1,243 @@
+{
+  "timestamp": "2026-02-16T22:01:04.317535",
+  "methods_compared": [
+    "HaarCascade",
+    "MediaPipe",
+    "OpenCV_DNN",
+    "YOLOv8"
+  ],
+  "detailed_results": {
+    "HaarCascade": {
+      "detection_reliability": {
+        "total_frames": 224,
+        "detected_frames": 159,
+        "missed_frames": 65,
+        "detection_rate_percent": 70.98214285714286,
+        "num_gaps": 16,
+        "avg_gap_length": 4.0625,
+        "max_gap_length": 15,
+        "min_gap_length": 1
+      },
+      "processing_speed": {
+        "avg_fps": 5.021089188097394,
+        "max_fps": 6.51928209161461,
+        "min_fps": 1.0079612109653617,
+        "avg_frame_time_ms": 199.15997556277685,
+        "std_frame_time_ms": 64.9054326882015,
+        "median_frame_time_ms": 193.69137287139893,
+        "p95_frame_time_ms": 224.49865341186523,
+        "p99_frame_time_ms": 368.12195777893214
+      },
+      "position_stability": {
+        "x_std_mm": 178.25713074258067,
+        "y_std_mm": 125.21328542060226,
+        "z_std_mm": 302.5279641393607,
+        "overall_std_mm": 372.7963795327216,
+        "stability_score": 0.0,
+        "x_mean_mm": 20.7225958285567,
+        "y_mean_mm": 6.015141932792933,
+        "z_mean_mm": 594.8936514550805
+      },
+      "tracking_smoothness": {
+        "raw_avg_jitter_mm": 101.2291192593331,
+        "raw_std_jitter_mm": 368.3195175921592,
+        "raw_max_jitter_mm": 2467.8620736181133,
+        "raw_min_jitter_mm": 3.4137114688714054,
+        "smoothness_score": 0.0,
+        "filtered_avg_jitter_mm": 29.10332234291343,
+        "filtered_std_jitter_mm": 65.0847872950863,
+        "filtered_max_jitter_mm": 583.2052570782861
+      },
+      "kalman_effectiveness": {
+        "x_noise_reduction_percent": 57.01076591540092,
+        "y_noise_reduction_percent": 40.42274458628935,
+        "z_noise_reduction_percent": 23.075895791176137,
+        "avg_noise_reduction_percent": 40.16980209762213,
+        "jitter_reduction_percent": 71.25004884379634,
+        "effectiveness_score": 55.70992547070924,
+        "raw_avg_std_mm": 201.99946010084787,
+        "filtered_avg_std_mm": 127.98231348991457
+      },
+      "session_info": {
+        "method_name": "HaarCascade",
+        "start_time": "2026-02-16T21:54:36.999983",
+        "duration_sec": 64.58626818656921,
+        "total_frames": 224
+      }
+    },
+    "MediaPipe": {
+      "detection_reliability": {
+        "total_frames": 520,
+        "detected_frames": 506,
+        "missed_frames": 14,
+        "detection_rate_percent": 97.3076923076923,
+        "num_gaps": 10,
+        "avg_gap_length": 1.4,
+        "max_gap_length": 3,
+        "min_gap_length": 1
+      },
+      "processing_speed": {
+        "avg_fps": 19.52503290662586,
+        "max_fps": 30.721875114447904,
+        "min_fps": 2.1201514024133803,
+        "avg_frame_time_ms": 51.21630292672377,
+        "std_frame_time_ms": 22.836470654735386,
+        "median_frame_time_ms": 49.37243461608887,
+        "p95_frame_time_ms": 71.00023031234741,
+        "p99_frame_time_ms": 86.10186100006092
+      },
+      "position_stability": {
+        "x_std_mm": 49.316705238624436,
+        "y_std_mm": 60.196593622970504,
+        "z_std_mm": 286.7979572813001,
+        "overall_std_mm": 297.16802587110357,
+        "stability_score": 0.9439913762988112,
+        "x_mean_mm": -9.9477104594528,
+        "y_mean_mm": -26.034715382031113,
+        "z_mean_mm": 766.3060378489513
+      },
+      "tracking_smoothness": {
+        "raw_avg_jitter_mm": 50.57777159973432,
+        "raw_std_jitter_mm": 42.09012329122899,
+        "raw_max_jitter_mm": 236.1973271416487,
+        "raw_min_jitter_mm": 1.1679842406853247,
+        "smoothness_score": 49.42222840026568,
+        "filtered_avg_jitter_mm": 19.747885335494903,
+        "filtered_std_jitter_mm": 12.85171334416753,
+        "filtered_max_jitter_mm": 78.46324583003775
+      },
+      "kalman_effectiveness": {
+        "x_noise_reduction_percent": 9.33983811858566,
+        "y_noise_reduction_percent": 2.2710426454680253,
+        "z_noise_reduction_percent": 4.320772447614671,
+        "avg_noise_reduction_percent": 5.310551070556119,
+        "jitter_reduction_percent": 60.95540647425709,
+        "effectiveness_score": 33.1329787724066,
+        "raw_avg_std_mm": 132.1037520476317,
+        "filtered_avg_std_mm": 125.9820594257862
+      },
+      "session_info": {
+        "method_name": "MediaPipe",
+        "start_time": "2026-02-16T21:56:05.295127",
+        "duration_sec": 69.01022934913635,
+        "total_frames": 520
+      }
+    },
+    "OpenCV_DNN": {
+      "detection_reliability": {
+        "total_frames": 337,
+        "detected_frames": 328,
+        "missed_frames": 9,
+        "detection_rate_percent": 97.3293768545994,
+        "num_gaps": 3,
+        "avg_gap_length": 3.0,
+        "max_gap_length": 7,
+        "min_gap_length": 1
+      },
+      "processing_speed": {
+        "avg_fps": 9.519210635527791,
+        "max_fps": 12.429482468409947,
+        "min_fps": 1.818191433791894,
+        "avg_frame_time_ms": 105.05072723864095,
+        "std_frame_time_ms": 30.313708098906247,
+        "median_frame_time_ms": 100.15296936035156,
+        "p95_frame_time_ms": 128.12805175781241,
+        "p99_frame_time_ms": 187.68887519836423
+      },
+      "position_stability": {
+        "x_std_mm": 32.195969959470595,
+        "y_std_mm": 61.942731451875865,
+        "z_std_mm": 275.0338018776937,
+        "overall_std_mm": 283.7553076801363,
+        "stability_score": 5.414897439954572,
+        "x_mean_mm": -3.2991249913841494,
+        "y_mean_mm": 7.5522648965526775,
+        "z_mean_mm": 601.2355943891944
+      },
+      "tracking_smoothness": {
+        "raw_avg_jitter_mm": 29.935610661753223,
+        "raw_std_jitter_mm": 41.12140223204098,
+        "raw_max_jitter_mm": 431.8964697629112,
+        "raw_min_jitter_mm": 0.0,
+        "smoothness_score": 70.06438933824677,
+        "filtered_avg_jitter_mm": 17.34384221088103,
+        "filtered_std_jitter_mm": 16.82656734709109,
+        "filtered_max_jitter_mm": 113.86427470990826
+      },
+      "kalman_effectiveness": {
+        "x_noise_reduction_percent": 11.578561389749368,
+        "y_noise_reduction_percent": 2.1894852313910538,
+        "z_noise_reduction_percent": 4.648768728553357,
+        "avg_noise_reduction_percent": 6.138938449897926,
+        "jitter_reduction_percent": 42.06284145377357,
+        "effectiveness_score": 24.10088995183575,
+        "raw_avg_std_mm": 123.05750109634668,
+        "filtered_avg_std_mm": 117.10092027018561
+      },
+      "session_info": {
+        "method_name": "OpenCV_DNN",
+        "start_time": "2026-02-16T21:59:50.370975",
+        "duration_sec": 64.00731468200684,
+        "total_frames": 337
+      }
+    },
+    "YOLOv8": {
+      "detection_reliability": {
+        "total_frames": 161,
+        "detected_frames": 161,
+        "missed_frames": 0,
+        "detection_rate_percent": 100.0,
+        "num_gaps": 0,
+        "avg_gap_length": 0.0,
+        "max_gap_length": 0,
+        "min_gap_length": 0
+      },
+      "processing_speed": {
+        "avg_fps": 3.3931343385562207,
+        "max_fps": 4.085256254790868,
+        "min_fps": 0.7225819077846269,
+        "avg_frame_time_ms": 294.71276413579903,
+        "std_frame_time_ms": 127.92795953070056,
+        "median_frame_time_ms": 265.2754783630371,
+        "p95_frame_time_ms": 367.08521842956543,
+        "p99_frame_time_ms": 908.4993362426791
+      },
+      "position_stability": {
+        "x_std_mm": 41.93405160340931,
+        "y_std_mm": 55.72867872460862,
+        "z_std_mm": 226.40009435480795,
+        "overall_std_mm": 236.8990355407425,
+        "stability_score": 21.0336548197525,
+        "x_mean_mm": 10.340300384447538,
+        "y_mean_mm": -28.19596084534524,
+        "z_mean_mm": 712.2955537804213
+      },
+      "tracking_smoothness": {
+        "raw_avg_jitter_mm": 44.22833917012025,
+        "raw_std_jitter_mm": 42.26683157154816,
+        "raw_max_jitter_mm": 239.5303858474647,
+        "raw_min_jitter_mm": 0.0,
+        "smoothness_score": 55.77166082987975,
+        "filtered_avg_jitter_mm": 28.07068568625213,
+        "filtered_std_jitter_mm": 18.50627639374877,
+        "filtered_max_jitter_mm": 76.28021638295921
+      },
+      "kalman_effectiveness": {
+        "x_noise_reduction_percent": 13.632898211979505,
+        "y_noise_reduction_percent": 3.4912050800965004,
+        "z_noise_reduction_percent": 7.432069162945225,
+        "avg_noise_reduction_percent": 8.18539081834041,
+        "jitter_reduction_percent": 36.53235411286684,
+        "effectiveness_score": 22.358872465603625,
+        "raw_avg_std_mm": 108.02094156094195,
+        "filtered_avg_std_mm": 99.85806135048244
+      },
+      "session_info": {
+        "method_name": "YOLOv8",
+        "start_time": "2026-02-16T21:58:25.895716",
+        "duration_sec": 64.23310804367065,
+        "total_frames": 161
+      }
+    }
+  }
+}

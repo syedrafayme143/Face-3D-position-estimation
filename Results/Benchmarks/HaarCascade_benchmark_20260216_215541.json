@@ -1,0 +1,58 @@
+{
+  "detection_reliability": {
+    "total_frames": 224,
+    "detected_frames": 159,
+    "missed_frames": 65,
+    "detection_rate_percent": 70.98214285714286,
+    "num_gaps": 16,
+    "avg_gap_length": 4.0625,
+    "max_gap_length": 15,
+    "min_gap_length": 1
+  },
+  "processing_speed": {
+    "avg_fps": 5.021089188097394,
+    "max_fps": 6.51928209161461,
+    "min_fps": 1.0079612109653617,
+    "avg_frame_time_ms": 199.15997556277685,
+    "std_frame_time_ms": 64.9054326882015,
+    "median_frame_time_ms": 193.69137287139893,
+    "p95_frame_time_ms": 224.49865341186523,
+    "p99_frame_time_ms": 368.12195777893214
+  },
+  "position_stability": {
+    "x_std_mm": 178.25713074258067,
+    "y_std_mm": 125.21328542060226,
+    "z_std_mm": 302.5279641393607,
+    "overall_std_mm": 372.7963795327216,
+    "stability_score": 0.0,
+    "x_mean_mm": 20.7225958285567,
+    "y_mean_mm": 6.015141932792933,
+    "z_mean_mm": 594.8936514550805
+  },
+  "tracking_smoothness": {
+    "raw_avg_jitter_mm": 101.2291192593331,
+    "raw_std_jitter_mm": 368.3195175921592,
+    "raw_max_jitter_mm": 2467.8620736181133,
+    "raw_min_jitter_mm": 3.4137114688714054,
+    "smoothness_score": 0.0,
+    "filtered_avg_jitter_mm": 29.10332234291343,
+    "filtered_std_jitter_mm": 65.0847872950863,
+    "filtered_max_jitter_mm": 583.2052570782861
+  },
+  "kalman_effectiveness": {
+    "x_noise_reduction_percent": 57.01076591540092,
+    "y_noise_reduction_percent": 40.42274458628935,
+    "z_noise_reduction_percent": 23.075895791176137,
+    "avg_noise_reduction_percent": 40.16980209762213,
+    "jitter_reduction_percent": 71.25004884379634,
+    "effectiveness_score": 55.70992547070924,
+    "raw_avg_std_mm": 201.99946010084787,
+    "filtered_avg_std_mm": 127.98231348991457
+  },
+  "session_info": {
+    "method_name": "HaarCascade",
+    "start_time": "2026-02-16T21:54:36.999983",
+    "duration_sec": 64.58626818656921,
+    "total_frames": 224
+  }
+}
