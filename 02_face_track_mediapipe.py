@@ -14,7 +14,7 @@ import mediapipe as mp
 
 from Utils.lin_kalman import LinKalman
 from Utils.Dataplot import DataPlot
-from Utils.performance_monitor import PerformanceMonitor  # ADDED
+from Utils.performance_monitor import PerformanceMonitor 
 
 # Constants
 CALIBRATION_FILE = 'Data/calibration_data.pkl'
@@ -63,7 +63,7 @@ class FaceGuiMediaPipe:
         self.output_dir = "Results"
         os.makedirs(self.output_dir, exist_ok=True) # Create Results folder if it doesn't exist
         
-        # ADDED: Initialize performance monitor
+        #Initialize performance monitor
         self.performance_monitor = PerformanceMonitor(method_name="MediaPipe")
 
     def _load_calibration(self):
@@ -308,7 +308,7 @@ class FaceGuiMediaPipe:
                 # Detect faces with MediaPipe
                 results = self.face_detection.process(rgb_frame)
                 
-                # ADDED: End detection timing
+                #End detection timing
                 self.performance_monitor.end_detection()
                 
                 # Process detected faces
@@ -361,7 +361,7 @@ class FaceGuiMediaPipe:
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2
                     )
                     
-                    # ADDED: Record metrics for detected frame
+                    # Record metrics for detected frame
                     self.performance_monitor.end_frame(
                         face_detected=True,
                         position=(xmm, ymm, zmm),
@@ -370,10 +370,10 @@ class FaceGuiMediaPipe:
                     
                     frameno += 1
                 else:
-                    # ADDED: Record metrics for frame with no detection
+                    #Record metrics for frame with no detection
                     self.performance_monitor.end_frame(face_detected=False)
                 
-                # Add legend to video
+                # legend to video
                 cv2.putText(frame, "MediaPipe Method", (10, 30),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
                 cv2.putText(frame, "Blue: Raw | Green: Prediction | Red: Filtered", (10, 60),
@@ -403,7 +403,7 @@ class FaceGuiMediaPipe:
                           f"Detection: {stats.get('detection_rate', 0):.1f}%")
                 
         finally:
-            # ADDED: Save benchmark results
+            # Save benchmark results
             self.performance_monitor.save_results()
             self.performance_monitor.print_summary()
             
